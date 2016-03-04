@@ -21,6 +21,9 @@ class PhotosViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onLogout(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().postNotificationName("userDidLogoutNotification", object: nil)
+    }
 
     /*
     // MARK: - Navigation

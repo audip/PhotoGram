@@ -20,7 +20,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Em-Q1-IIV">
                                 <rect key="frame" x="49" y="91" width="222" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e3Z-dJ-o0o">
                                 <rect key="frame" x="49" y="171" width="222" height="30"/>
@@ -88,7 +88,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="5OO-qJ-6hc">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="kyi-GC-rXy"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="kyi-GC-rXy">
+                            <connections>
+                                <action selector="onLogout:" destination="huP-uI-sx4" id="rFr-9n-mCP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tOB-Ax-cvr" userLabel="First Responder" sceneMemberID="firstResponder"/>
