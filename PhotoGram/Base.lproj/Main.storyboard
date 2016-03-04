@@ -58,7 +58,7 @@
         <!--Profile-->
         <scene sceneID="ZsX-HS-Kqy">
             <objects>
-                <viewController id="peJ-SW-s1z" sceneMemberID="viewController">
+                <viewController id="peJ-SW-s1z" customClass="ProfileViewController" customModule="PhotoGram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vDR-oX-lXA"/>
                         <viewControllerLayoutGuide type="bottom" id="jNs-pt-g1Y"/>
@@ -78,7 +78,7 @@
         <!--Camera-->
         <scene sceneID="8VX-bm-8DT">
             <objects>
-                <viewController id="Ybg-4Q-TBE" sceneMemberID="viewController">
+                <viewController id="Ybg-4Q-TBE" customClass="CameraViewController" customModule="PhotoGram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6uS-EM-0z1"/>
                         <viewControllerLayoutGuide type="bottom" id="My1-KN-cxY"/>
