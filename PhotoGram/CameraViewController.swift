@@ -15,6 +15,12 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
 
         // Do any additional setup after loading the view.
         
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = true
+        vc.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        
+        self.presentViewController(vc, animated: true, completion: nil)
     }
 
     func imagePickerController(picker: UIImagePickerController,
@@ -23,19 +29,16 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
-        // Do something with the images (based on your use case)
+        Post.postUserImage(editedImage, withCaption: "Hello") { (success: Bool, error: NSError?) in
+            if success {
+                print("Image uploaded succesfully")
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
         
         // Dismiss UIImagePickerController to go back to your original view controller
         dismissViewControllerAnimated(true, completion: nil)
-    }
-    override func viewDidAppear(animated: Bool) {
-        let vc = UIImagePickerController()
-        vc.delegate = self
-        vc.allowsEditing = true
-        vc.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        
-        self.presentViewController(vc, animated: true, completion: nil)
-
     }
     
     override func didReceiveMemoryWarning() {
