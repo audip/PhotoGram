@@ -10,6 +10,7 @@
 		2E9249FAE0208D8E3FB7F16E /* Pods_PhotoGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CECA343A0BBC8A4FEF29DA4 /* Pods_PhotoGram.framework */; };
 		AC3317181C8A7B5A00BAA760 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3317171C8A7B5A00BAA760 /* LibraryViewController.swift */; };
 		AC33171A1C8A7B6700BAA760 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3317191C8A7B6700BAA760 /* SearchViewController.swift */; };
+		AC33171D1C8A819900BAA760 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33171C1C8A819900BAA760 /* PhotoCell.swift */; };
 		AC698E581C8955DC005CD320 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC698E571C8955DC005CD320 /* CameraViewController.swift */; };
 		AC698E5A1C895603005CD320 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC698E591C895603005CD320 /* ProfileViewController.swift */; };
 		AC698E5D1C8958C8005CD320 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC698E5C1C8958C8005CD320 /* Post.swift */; };
@@ -27,6 +28,7 @@
 		4ABDCA5B3A90777A86653968 /* Pods-PhotoGram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoGram.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoGram/Pods-PhotoGram.release.xcconfig"; sourceTree = "<group>"; };
 		AC3317171C8A7B5A00BAA760 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		AC3317191C8A7B6700BAA760 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		AC33171C1C8A819900BAA760 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		AC698E571C8955DC005CD320 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		AC698E591C895603005CD320 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AC698E5C1C8958C8005CD320 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				AC7A870E1C83454D00D617FF /* Assets.xcassets */,
 				AC7A87101C83454D00D617FF /* LaunchScreen.storyboard */,
 				AC7A87131C83454D00D617FF /* Info.plist */,
+				AC33171C1C8A819900BAA760 /* PhotoCell.swift */,
 			);
 			path = PhotoGram;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC698E5A1C895603005CD320 /* ProfileViewController.swift in Sources */,
+				AC33171D1C8A819900BAA760 /* PhotoCell.swift in Sources */,
 				ACDCA6631C83539B00430DA2 /* LoginViewController.swift in Sources */,
 				AC3317181C8A7B5A00BAA760 /* LibraryViewController.swift in Sources */,
 				AC33171A1C8A7B6700BAA760 /* SearchViewController.swift in Sources */,

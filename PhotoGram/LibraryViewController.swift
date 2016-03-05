@@ -8,13 +8,36 @@
 
 import UIKit
 
-class LibraryViewController: UIViewController {
+class LibraryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = true
+        vc.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        
+        self.presentViewController(vc, animated: true, completion: nil)
     }
+    func imagePickerController(picker: UIImagePickerController,
+         didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        // Get the image captured by the UIImagePickerController
+        let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        
+        Post.postUserImage(editedImage, withCaption: "Hello") { (success: Bool, error: NSError?) in
+            if success {
+                print("Image uploaded succesfully")
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+        
+        // Dismiss UIImagePickerController to go back to your original view controller
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
