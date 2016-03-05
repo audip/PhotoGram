@@ -19,18 +19,19 @@ class Post: NSObject {
      
      - parameter image: Image that the user wants upload to parse
      - parameter caption: Caption text input by the user
-     - parameter completion: Block to be executed after save operation is complete
-     */
+     - parameter completion: Block to be executed after save operation is complete */
+    
     class func postUserImage(image: UIImage?, withCaption caption: String?, withCompletion completion: PFBooleanResultBlock?) {
         // Create Parse object PFObject
         let post = PFObject(className: "Post")
         
         // Add relevant fields to the object
         post["media"] = getPFFileFromImage(image) // PFFile column type
-        post["author"] = PFUser.currentUser() // Pointer column type that points to PFUser
+        post["author"] = PFUser.currentUser()?.username // Pointer column type that points to PFUser
         post["caption"] = caption
         post["likesCount"] = 0
         post["commentsCount"] = 0
+        post["createdAt"] = NSDate()
         
         // Save object (following function will save the object in Parse asynchronously)
         post.saveInBackgroundWithBlock(completion)
@@ -52,5 +53,16 @@ class Post: NSObject {
             }
         }
         return nil
+    }
+
+    
+    class func fetchPostsWithCompletion(completion: (posts: [PFObject]?, error: NSError?) -> ()) {
+        let query = PFQuery(className: "Post")
+        query.includeKey("author")
+        //query.includeKey("caption")
+        //query.includeKey("createdAt")
+        query.orderByDescending("createdAt")
+        query.limit = 20
+        query.findObjectsInBackgroundWithBlock(completion)
     }
 }

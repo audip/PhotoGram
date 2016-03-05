@@ -13,7 +13,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
-    var posts: [PFObject]?
+    var postList: [PFObject]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,42 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         
         tableView.rowHeight = 320
+        
+        loadData()
+        // Initialize a UIRefreshControl
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    func loadData() {
+        let query = PFQuery(className: "Post")
+        query.includeKey("author")
+        query.orderByDescending("createdAt")
+        query.limit = 20
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                print("Successfully retrieved posts: \(objects!.count)")
+                if let posts = objects {
+                    self.postList = posts
+                    for post in posts {
+                        print("Message: \(post) + User: \(post["caption"])")
+                    }
+                }
+                self.tableView.reloadData()
+
+            } else {
+                let errorString = error!.userInfo["error"] as? NSString
+                print("Error message: \(errorString)")
+            }
+        }
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,7 +66,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let posts = posts {
+        if let posts = postList {
             return posts.count
         } else {
             return 0
@@ -40,13 +76,50 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
         
+        cell.handleLabel.text = postList![indexPath.row]["author"] as? String
+        cell.captionLabel.text = postList![indexPath.row]["caption"] as? String
+        if let timeStamp = postList![indexPath.row]["createdDate"] as? String {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+            let createdAt = formatter.dateFromString(timeStamp)
+            cell.timestampLabel.text = "\(convertTimeToString(Int(NSDate().timeIntervalSinceDate(createdAt!))))"
+        }
+        let userImageFile = postList![indexPath.row]["media"] as! PFFile
+        userImageFile.getDataInBackgroundWithBlock {
+            (imageData: NSData?, error: NSError?) -> Void in
+            if error == nil {
+                if let imageData = imageData {
+                    cell.postedImageView.image = UIImage(data:imageData)
+                }
+            }
+        }
+        
         return cell
     }
     
     @IBAction func onLogout(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().postNotificationName("userDidLogoutNotification", object: nil)
     }
-
+    
+    func convertTimeToString(number: Int) -> String{
+        let day = number/86400
+        let hour = (number - day * 86400)/3600
+        let minute = (number - day * 86400 - hour * 3600)/60
+        if day != 0{
+            return String(day) + "d"
+        }else if hour != 0 {
+            return String(hour) + "h"
+        }else{
+            return String(minute) + "m"
+        }
+    }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+    
+        loadData()
+        // Tell the refreshControl to stop spinning
+        refreshControl.endRefreshing()
+    }
     /*
     // MARK: - Navigation
 
