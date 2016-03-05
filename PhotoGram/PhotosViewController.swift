@@ -36,29 +36,22 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func loadData() {
-        let query = PFQuery(className: "Post")
-        query.includeKey("author")
-        query.orderByDescending("createdAt")
-        query.limit = 20
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            
+        Post.fetchPostsWithCompletion { (objects: [PFObject]?, error: NSError?) in
             if error == nil {
                 print("Successfully retrieved posts: \(objects!.count)")
                 if let posts = objects {
                     self.postList = posts
-                    for post in posts {
-                        print("Message: \(post) + User: \(post["caption"])")
-                    }
+//                    for post in posts {
+//                        print("Message: \(post) + User: \(post["caption"])")
+//                    }
                 }
                 self.tableView.reloadData()
-
+                
             } else {
                 let errorString = error!.userInfo["error"] as? NSString
                 print("Error message: \(errorString)")
             }
         }
-        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,14 +69,12 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
         
-        cell.handleLabel.text = postList![indexPath.row]["author"] as? String
+        let author = postList![indexPath.row]["author"] as? String
+        cell.handleLabel.text = "@\(author!)"
         cell.captionLabel.text = postList![indexPath.row]["caption"] as? String
-        if let timeStamp = postList![indexPath.row]["createdDate"] as? String {
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-            let createdAt = formatter.dateFromString(timeStamp)
-            cell.timestampLabel.text = "\(convertTimeToString(Int(NSDate().timeIntervalSinceDate(createdAt!))))"
-        }
+        let timeStamp = postList![indexPath.row]["_created_at"] as? NSDictionary
+        print(timeStamp)
+
         let userImageFile = postList![indexPath.row]["media"] as! PFFile
         userImageFile.getDataInBackgroundWithBlock {
             (imageData: NSData?, error: NSError?) -> Void in

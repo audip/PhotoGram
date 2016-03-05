@@ -31,7 +31,6 @@ class Post: NSObject {
         post["caption"] = caption
         post["likesCount"] = 0
         post["commentsCount"] = 0
-        post["createdAt"] = NSDate()
         
         // Save object (following function will save the object in Parse asynchronously)
         post.saveInBackgroundWithBlock(completion)
@@ -54,14 +53,9 @@ class Post: NSObject {
         }
         return nil
     }
-
-    
-    class func fetchPostsWithCompletion(completion: (posts: [PFObject]?, error: NSError?) -> ()) {
+    class func fetchPostsWithCompletion(completion completion:([PFObject]?, NSError?) -> ()) {
         let query = PFQuery(className: "Post")
-        query.includeKey("author")
-        //query.includeKey("caption")
-        //query.includeKey("createdAt")
-        query.orderByDescending("createdAt")
+        query.orderByDescending("_created_at")
         query.limit = 20
         query.findObjectsInBackgroundWithBlock(completion)
     }
