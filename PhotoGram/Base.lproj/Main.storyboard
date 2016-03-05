@@ -77,6 +77,25 @@
             </objects>
             <point key="canvasLocation" x="130" y="285"/>
         </scene>
+        <!--Photos-->
+        <scene sceneID="wZY-gb-xf9">
+            <objects>
+                <viewController id="pq5-gj-xDS" customClass="LibraryViewController" customModule="PhotoGram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B6s-SA-bQO"/>
+                        <viewControllerLayoutGuide type="bottom" id="AmU-ME-vYu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yae-x0-X6R">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Photos" image="Photos" id="WvP-Ud-2A3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bSV-CQ-cWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="673" y="1388"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="ZsX-HS-Kqy">
             <objects>
@@ -95,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUf-6k-mZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912" y="1307"/>
+            <point key="canvasLocation" x="1150" y="1382"/>
         </scene>
         <!--Camera-->
         <scene sceneID="8VX-bm-8DT">
@@ -154,11 +173,45 @@
                         <segue destination="jZw-Pq-RLf" kind="relationship" relationship="viewControllers" id="Zrs-01-JHx"/>
                         <segue destination="Ybg-4Q-TBE" kind="relationship" relationship="viewControllers" id="k0y-d0-AXL"/>
                         <segue destination="peJ-SW-s1z" kind="relationship" relationship="viewControllers" id="Sed-Yj-8jI"/>
+                        <segue destination="pq5-gj-xDS" kind="relationship" relationship="viewControllers" id="09H-TU-YUi"/>
+                        <segue destination="6TX-hH-e0i" kind="relationship" relationship="viewControllers" id="bk5-tF-zMc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ukb-E1-VID" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="599" y="285"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="x2O-Ln-VUU">
+            <objects>
+                <viewController id="6TX-hH-e0i" customClass="SearchViewController" customModule="PhotoGram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a1t-OC-tDU"/>
+                        <viewControllerLayoutGuide type="bottom" id="nJa-l0-IU2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ign-zx-GQw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="faf-KB-mu7">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="J4n-Ri-0CQ">
+                                <rect key="frame" x="53" y="86" width="215" height="29"/>
+                                <segments>
+                                    <segment title="Users"/>
+                                    <segment title="Posts"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Search" image="Search" id="YXT-9F-jh3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdv-6V-buw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1017" y="-771"/>
         </scene>
         <!--Feed-->
         <scene sceneID="Vva-wc-1ZQ">
@@ -184,6 +237,8 @@
         <image name="Bg" width="1500" height="996"/>
         <image name="Camera" width="42" height="42"/>
         <image name="Feed" width="42" height="42"/>
+        <image name="Photos" width="42" height="42"/>
         <image name="Profile" width="42" height="42"/>
+        <image name="Search" width="42" height="42"/>
     </resources>
 </document>
