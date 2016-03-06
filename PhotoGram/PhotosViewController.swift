@@ -14,7 +14,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
-    var postList: [PFObject]?
+    var postList: [Post]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,6 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.rowHeight = 320
         
         loadData()
-        // Initialize a UIRefreshControl
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
@@ -44,11 +43,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
             if error == nil {
                 print("Successfully retrieved posts: \(objects!.count)")
                 if let posts = objects {
-                    self.postList = posts
-                    for post in posts {
-//                        print("Date: \(post["timestamp"])")
-                        //print("Message: \(post) + User: \(post["caption"])")
-                    }
+                    self.postList = Post.postsWithArray(posts)
                 }
                 self.tableView.reloadData()
                 
@@ -76,52 +71,15 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
         
-        let author = postList![indexPath.row]["author"] as? String
-        cell.handleLabel.text = "@\(author!)"
-        cell.captionLabel.text = postList![indexPath.row]["caption"] as? String
-        let timeStamp = postList![indexPath.row]["timestamp"] as? String
-        //print("Date: \(postList![indexPath.row]["timestamp"])")
-
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-        let createdAt = formatter.dateFromString(timeStamp!)
-        //print("\(createdAt)")
-        
-        if let timestamp = createdAt {
-            cell.timestampLabel.text = "\(convertTimeToString(Int(NSDate().timeIntervalSinceDate(timestamp))))"
-            //print(timestamp)
-        }
-
-        let userImageFile = postList![indexPath.row]["media"] as! PFFile
-        userImageFile.getDataInBackgroundWithBlock {
-            (imageData: NSData?, error: NSError?) -> Void in
-            if error == nil {
-                if let imageData = imageData {
-                    cell.postedImageView.image = UIImage(data:imageData)
-                }
-            }
-        }
-        
+        cell.post = postList![indexPath.row]
+                
         return cell
     }
     
     @IBAction func onLogout(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().postNotificationName("userDidLogoutNotification", object: nil)
     }
-    
-    func convertTimeToString(number: Int) -> String{
-        let day = number/86400
-        let hour = (number - day * 86400)/3600
-        let minute = (number - day * 86400 - hour * 3600)/60
-        if day != 0{
-            return String(day) + "d"
-        }else if hour != 0 {
-            return String(hour) + "h"
-        }else{
-            return String(minute) + "m"
-        }
-    }
-    
+        
     func refreshControlAction(refreshControl: UIRefreshControl) {
     
         loadData()
