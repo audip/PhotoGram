@@ -41,9 +41,10 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
                 print("Successfully retrieved posts: \(objects!.count)")
                 if let posts = objects {
                     self.postList = posts
-//                    for post in posts {
-//                        print("Message: \(post) + User: \(post["caption"])")
-//                    }
+                    for post in posts {
+//                        print("Date: \(post["timestamp"])")
+                        //print("Message: \(post) + User: \(post["caption"])")
+                    }
                 }
                 self.tableView.reloadData()
                 
@@ -72,8 +73,18 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         let author = postList![indexPath.row]["author"] as? String
         cell.handleLabel.text = "@\(author!)"
         cell.captionLabel.text = postList![indexPath.row]["caption"] as? String
-        let timeStamp = postList![indexPath.row]["_created_at"] as? NSDictionary
-        print(timeStamp)
+        let timeStamp = postList![indexPath.row]["timestamp"] as? String
+        //print("Date: \(postList![indexPath.row]["timestamp"])")
+
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        let createdAt = formatter.dateFromString(timeStamp!)
+        //print("\(createdAt)")
+        
+        if let timestamp = createdAt {
+            cell.timestampLabel.text = "\(convertTimeToString(Int(NSDate().timeIntervalSinceDate(timestamp))))"
+            //print(timestamp)
+        }
 
         let userImageFile = postList![indexPath.row]["media"] as! PFFile
         userImageFile.getDataInBackgroundWithBlock {
