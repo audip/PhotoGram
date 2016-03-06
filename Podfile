@@ -5,4 +5,5 @@ use_frameworks!
 
 target 'PhotoGram' do
     pod 'Parse'
+    pod 'MBProgressHUD'
 end

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
 class PhotosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -36,6 +37,9 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func loadData() {
+        
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
         Post.fetchPostsWithCompletion { (objects: [PFObject]?, error: NSError?) in
             if error == nil {
                 print("Successfully retrieved posts: \(objects!.count)")
@@ -53,6 +57,8 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
                 print("Error message: \(errorString)")
             }
         }
+        
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
