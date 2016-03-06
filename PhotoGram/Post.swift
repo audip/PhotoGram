@@ -75,6 +75,21 @@ class Post: NSObject {
         query.limit = 20
         query.findObjectsInBackgroundWithBlock(completion)
     }
+    class func searchPostsWithCompletion(params: NSDictionary, completion:([PFObject]?, NSError?) -> ()) {
+        let obj = params
+        var searchKey: String?
+        var searchValue: String?
+        for (key, value) in obj {
+            searchKey = key as? String
+            searchValue = value as? String
+        }
+        print("Key: \(searchKey), Value: \(searchValue)")
+        let query = PFQuery(className: "Post")
+        query.whereKey(searchKey!, containsString: searchValue!)
+        query.orderByDescending("timestamp")
+        query.limit = 20
+        query.findObjectsInBackgroundWithBlock(completion)
+    }
     
     func convertTimeToString(number: Int) -> String{
         let day = number/86400

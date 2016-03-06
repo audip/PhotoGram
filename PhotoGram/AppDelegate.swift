@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if PFUser.currentUser() != nil {
             // Go to logged in screen
-            print("current user detected: \(PFUser.currentUser()!.username)")
+            print("current user detected: \(PFUser.currentUser()!.username!)")
             let vc = storyboard.instantiateViewControllerWithIdentifier("tabBarController") as UIViewController
             window?.rootViewController = vc
         }
