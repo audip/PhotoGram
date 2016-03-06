@@ -24,13 +24,14 @@ class Post: NSObject {
         media = object["media"] as? PFFile
         caption = object["caption"] as? String
         author = object["author"] as? String
-        timestamp = object["timestamp"] as? String
+        let timeStamp = object["timestamp"] as? String
         commentsCount = object["commentsCount"] as? Int
         likesCount = object["likesCount"] as? Int
         
-//        let formatter = NSDateFormatter()
-//        formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-//        let createdAt = formatter.dateFromString(timestamp!)
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        let createdAt = formatter.dateFromString(timeStamp!)
+        timestamp = "\(convertTimeToString(Int(NSDate().timeIntervalSinceDate(createdAt!))))"
     }
     
     class func postUserImage(image: UIImage?, withCaption caption: String?, withCompletion completion: PFBooleanResultBlock?) {
@@ -74,4 +75,18 @@ class Post: NSObject {
         query.limit = 20
         query.findObjectsInBackgroundWithBlock(completion)
     }
+    
+    func convertTimeToString(number: Int) -> String{
+        let day = number/86400
+        let hour = (number - day * 86400)/3600
+        let minute = (number - day * 86400 - hour * 3600)/60
+        if day != 0{
+            return String(day) + "d"
+        }else if hour != 0 {
+            return String(hour) + "h"
+        }else{
+            return String(minute) + "m"
+        }
+    }
+
 }

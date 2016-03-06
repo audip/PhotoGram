@@ -15,7 +15,27 @@ class PhotoCell: UITableViewCell {
     @IBOutlet weak var handleLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
-    @IBOutlet weak var profileImageview: UIImageView!
+    
+    var post: Post! {
+        didSet{
+    
+            handleLabel.text = "@\(post.author!)"
+            captionLabel.text = post.caption!
+            timestampLabel.text = "\(post.timestamp!)"
+            
+            let userImageFile = post.media! 
+            
+            userImageFile.getDataInBackgroundWithBlock {
+            (imageData: NSData?, error: NSError?) -> Void in
+                if error == nil {
+                    if let imageData = imageData {
+                        self.postedImageView.image = UIImage(data:imageData)
+                    }
+                }
+            }
+
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
