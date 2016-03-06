@@ -46,7 +46,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
+        searchBar.resignFirstResponder()
         Post.searchPostsWithCompletion(["caption": searchBar.text!], completion: { (objects: [PFObject]?, error: NSError?) in
             if error == nil {
                 print("Successfully searched posts: \(objects!.count)")
