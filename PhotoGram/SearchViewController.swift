@@ -46,8 +46,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        var searchOptions = ["caption", "author"]
+        let searchOption = searchOptions[searchSegmentedControl.selectedSegmentIndex]
+        
         searchBar.resignFirstResponder()
-        Post.searchPostsWithCompletion(["caption": searchBar.text!], completion: { (objects: [PFObject]?, error: NSError?) in
+        Post.searchPostsWithCompletion([searchOption: searchBar.text!.lowercaseString], completion: { (objects: [PFObject]?, error: NSError?) in
             if error == nil {
                 print("Successfully searched posts: \(objects!.count)")
                 if let posts = objects {
