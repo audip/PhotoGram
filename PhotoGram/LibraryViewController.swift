@@ -53,7 +53,7 @@ class LibraryViewController: UIViewController, UIImagePickerControllerDelegate, 
         spinningCompleted.labelText = "Uploading..."
         spinningCompleted.userInteractionEnabled = false
         
-        if caption == nil {
+        if caption == "" {
             caption = "A beautiful photo"
         }
         

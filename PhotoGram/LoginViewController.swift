@@ -39,6 +39,7 @@ class LoginViewController: UIViewController {
         
         newUser.username = usernameField.text
         newUser.password = passwordField.text
+        newUser["media"] = ""
         
         newUser.signUpInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
@@ -54,6 +55,9 @@ class LoginViewController: UIViewController {
         }
     }
 
+    @IBAction func onTap(sender: AnyObject) {
+        view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 

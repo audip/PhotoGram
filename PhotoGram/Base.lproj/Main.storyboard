@@ -21,6 +21,10 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bg" translatesAutoresizingMaskIntoConstraints="NO" id="sjx-tJ-x6k">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="IkO-U7-ZTQ" appends="YES" id="dvC-Wg-rsa"/>
+                                </connections>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Em-Q1-IIV">
                                 <rect key="frame" x="49" y="175" width="222" height="30"/>
@@ -76,6 +80,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="IkO-U7-ZTQ">
+                    <connections>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="64G-7f-Ogn"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="130" y="285"/>
         </scene>
@@ -180,10 +189,62 @@
                     <view key="view" contentMode="scaleToFill" id="1eN-qu-mEI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tpx-ZV-bh6">
+                                <rect key="frame" x="20" y="28" width="120" height="120"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QWH-qK-Jps">
+                                <rect key="frame" x="0.0" y="208" width="320" height="311"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mJa-yp-WSz">
+                                    <size key="itemSize" width="132" height="118"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionCell" id="NTe-qL-5Tw" customClass="PhotoCollectionCell" customModule="PhotoGram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CcG-hK-Iki">
+                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <size key="customSize" width="130" height="130"/>
+                                        <connections>
+                                            <outlet property="postedImageView" destination="CcG-hK-Iki" id="wTr-n8-JfR"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oS0-Yo-qaM">
+                                <rect key="frame" x="172" y="89" width="106" height="30"/>
+                                <state key="normal" title="Change Picture"/>
+                                <connections>
+                                    <action selector="onChangeProfilePicture:" destination="peJ-SW-s1z" eventType="touchUpInside" id="9GB-qi-t1i"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aditya Purandare" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATj-65-pRD">
+                                <rect key="frame" x="148" y="60" width="164" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="qD7-Cd-GcT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="QWH-qK-Jps" id="x5B-eY-YXN"/>
+                        <outlet property="nameLabel" destination="ATj-65-pRD" id="7fP-Qq-u0z"/>
+                        <outlet property="profileImageView" destination="Tpx-ZV-bh6" id="ngj-bj-psF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUf-6k-mZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -220,20 +281,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Bg" translatesAutoresizingMaskIntoConstraints="NO" id="9Du-Vl-iTM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QwH-0q-d0G">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="320" id="rEn-rp-Hcb" customClass="PhotoCell" customModule="PhotoGram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="320"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rEn-rp-Hcb" id="FuW-Q1-yAI">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="319.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Du-Vl-iTM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="319.5"/>
+                                                </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ScE-1x-SFp">
                                                     <rect key="frame" x="30" y="35" width="260" height="260"/>
                                                     <constraints>
@@ -282,6 +343,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="backgroundImageView" destination="9Du-Vl-iTM" id="GCM-sq-4ak"/>
                                             <outlet property="captionLabel" destination="1KR-kz-oKq" id="GCR-n3-MZV"/>
                                             <outlet property="handleLabel" destination="Qha-8T-JHr" id="Wa3-lw-jaq"/>
                                             <outlet property="postedImageView" destination="ScE-1x-SFp" id="HlV-Jf-GIr"/>
@@ -294,7 +356,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="QwH-0q-d0G" secondAttribute="trailing" id="E6f-N3-c6C"/>
-                            <constraint firstItem="QwH-0q-d0G" firstAttribute="top" secondItem="Zm3-bJ-3xe" secondAttribute="bottom" id="FC9-7Y-Nzf"/>
+                            <constraint firstItem="QwH-0q-d0G" firstAttribute="top" secondItem="Zm3-bJ-3xe" secondAttribute="bottom" constant="-64" id="FC9-7Y-Nzf"/>
                             <constraint firstItem="QwH-0q-d0G" firstAttribute="leading" secondItem="Y6e-hV-pvf" secondAttribute="leading" id="Wfd-q8-wqs"/>
                             <constraint firstItem="MGg-PG-o3W" firstAttribute="top" secondItem="QwH-0q-d0G" secondAttribute="bottom" id="X47-cX-B5e"/>
                         </constraints>

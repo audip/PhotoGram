@@ -11,6 +11,7 @@
 		AC3317181C8A7B5A00BAA760 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3317171C8A7B5A00BAA760 /* LibraryViewController.swift */; };
 		AC33171A1C8A7B6700BAA760 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3317191C8A7B6700BAA760 /* SearchViewController.swift */; };
 		AC33171D1C8A819900BAA760 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33171C1C8A819900BAA760 /* PhotoCell.swift */; };
+		AC33171F1C8BDDF300BAA760 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33171E1C8BDDF300BAA760 /* PhotoCollectionCell.swift */; };
 		AC698E581C8955DC005CD320 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC698E571C8955DC005CD320 /* CameraViewController.swift */; };
 		AC698E5A1C895603005CD320 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC698E591C895603005CD320 /* ProfileViewController.swift */; };
 		AC698E5D1C8958C8005CD320 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC698E5C1C8958C8005CD320 /* Post.swift */; };
@@ -29,6 +30,7 @@
 		AC3317171C8A7B5A00BAA760 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		AC3317191C8A7B6700BAA760 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		AC33171C1C8A819900BAA760 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		AC33171E1C8BDDF300BAA760 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		AC698E571C8955DC005CD320 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		AC698E591C895603005CD320 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AC698E5C1C8958C8005CD320 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				AC7A87101C83454D00D617FF /* LaunchScreen.storyboard */,
 				AC7A87131C83454D00D617FF /* Info.plist */,
 				AC33171C1C8A819900BAA760 /* PhotoCell.swift */,
+				AC33171E1C8BDDF300BAA760 /* PhotoCollectionCell.swift */,
 			);
 			path = PhotoGram;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				AC33171D1C8A819900BAA760 /* PhotoCell.swift in Sources */,
 				ACDCA6631C83539B00430DA2 /* LoginViewController.swift in Sources */,
 				AC3317181C8A7B5A00BAA760 /* LibraryViewController.swift in Sources */,
+				AC33171F1C8BDDF300BAA760 /* PhotoCollectionCell.swift in Sources */,
 				AC33171A1C8A7B6700BAA760 /* SearchViewController.swift in Sources */,
 				AC698E581C8955DC005CD320 /* CameraViewController.swift in Sources */,
 				AC7A871A1C8345EA00D617FF /* PhotosViewController.swift in Sources */,
