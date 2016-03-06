@@ -44,6 +44,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                                 }
                             }
                         }
+                    } else {
+                        self.profileImageView.image = UIImage(named: "default")
                     }
                 }
             } else {
