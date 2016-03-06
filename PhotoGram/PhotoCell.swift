@@ -15,6 +15,7 @@ class PhotoCell: UITableViewCell {
     @IBOutlet weak var handleLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     var post: Post! {
         didSet{
