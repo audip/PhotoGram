@@ -26,7 +26,6 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.rowHeight = 320
         
         loadData()
-        // Initialize a UIRefreshControl
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
@@ -45,10 +44,6 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
                 print("Successfully retrieved posts: \(objects!.count)")
                 if let posts = objects {
                     self.postList = Post.postsWithArray(posts)
-//                    for post in posts {
-////                        print("Date: \(post["timestamp"])")
-//                        //print("Message: \(post) + User: \(post["caption"])")
-//                    }
                 }
                 self.tableView.reloadData()
                 
