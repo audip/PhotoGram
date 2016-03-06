@@ -95,7 +95,7 @@ class Post: NSObject {
             searchKey = key as? String
             searchValue = value as? String
         }
-        //print("Key: \(searchKey), Value: \(searchValue)")
+        print("Key: \(searchKey!), Value: \(searchValue!)")
         let query = PFQuery(className: "Post")
         query.whereKey(searchKey!, containsString: searchValue!)
         query.orderByDescending("timestamp")
